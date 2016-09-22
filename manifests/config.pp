@@ -7,6 +7,7 @@ class puppetagent::config {
     section => 'main',
     setting => 'ca_server',
     value   => $puppetagent::ca_server,
+    notify  => Service['puppet'],
   }
 
   ini_setting { 'puppet/agent/server':
@@ -15,6 +16,7 @@ class puppetagent::config {
     section => 'agent',
     setting => 'server',
     value   => $puppetagent::master_server,
+    notify  => Service['puppet'],
   }
 
   ini_setting { 'puppet/agent/environment':
@@ -23,6 +25,7 @@ class puppetagent::config {
     section => 'agent',
     setting => 'environment',
     value   => $puppetagent::environment,
+    notify  => Service['puppet'],
   }
 
   ini_setting { 'puppet/agent/run_interval':
@@ -31,6 +34,7 @@ class puppetagent::config {
     section => 'agent',
     setting => 'run_interval',
     value   => $puppetagent::run_interval,
+    notify  => Service['puppet'],
   }
 
   ini_setting { 'puppet/default/start':
@@ -39,6 +43,7 @@ class puppetagent::config {
     section => '',
     setting => 'START',
     value   => bool2ensure($puppetagent::enabled, 'yes', 'no'),
+    notify  => Service['puppet'],
   }
 
 
